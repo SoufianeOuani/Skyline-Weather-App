@@ -1,104 +1,135 @@
 package com.example.training.presentation.ui.screens.home
 
-import android.R.attr.contentDescription
-import android.graphics.drawable.Icon
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.SemanticsProperties.ContentDescription
 import androidx.compose.ui.unit.dp
-import com.example.training.R
-
-//@Composable
-//fun TopBarSection(){
-//    Row(
-//        modifier = Modifier.fillMaxWidth()
-//            .padding(16.dp),
-//        verticalAlignment = Alignment.CenterVertically,
-//        horizontalArrangement = Arrangement.Start
-//    ) {
-//        //Menu Button
-//        IconButton(modifier = Modifier,
-//            onClick = {}
-//        ) {
-//            androidx.compose.material3.Icon(
-//                imageVector = Icons.Default.Menu,
-//                contentDescription = "Top bar menu",
-//                tint = Color.DarkGray
-//            )
-//        }
-//
-//        //screen title
-//        Text(text = "Home", modifier = Modifier.weight(1f))
-//
-//        //Country flag
-//        Image(
-//            painter = painterResource(R.drawable.ic_post_background),
-//            contentDescription = "Country flag",
-//            modifier = Modifier
-//                .weight(1f)
-//                .size(32.dp)
-//                .align(Alignment.Top)
-//                .clip(RoundedCornerShape(4.dp))
-//        )
-//    }
-//}
-
+import com.example.training.domain.model.ForecastDay
+import com.example.training.presentation.ui.components.*
+import com.example.training.presentation.ui.components.ForecastDetailsScreen
 
 @Composable
-fun TopBarSection() {
+fun HomeScreen(
+    viewModel: HomeViewModel
+) {
 
-    Row(
+    val state = viewModel.state
+    val scrollState = rememberScrollState()
+
+    // 🔥 Navigation state
+    var selectedDay by remember { mutableStateOf<ForecastDay?>(null) }
+
+    // 🔥 Handle system back
+    BackHandler(enabled = selectedDay != null) {
+        selectedDay = null
+    }
+
+    Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(state.backgroundColors)
+            )
+            // 🔥 CLOSE DROPDOWN WHEN CLICKING OUTSIDE
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ) {
+                viewModel.onSearchQueryChange("")
+            }
     ) {
 
-        //Menu button
-        IconButton(onClick = {}) {
-            androidx.compose.material3.Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = "Menu",
-                tint = Color.DarkGray
+        // =====================================================
+        // 📅 DETAILS SCREEN
+        // =====================================================
+        if (selectedDay != null) {
+
+            ForecastDetailsScreen(
+                day = selectedDay!!.day,
+                background = state.backgroundColors,
+                hourly = state.hourlyForecast, // ✅ UPDATED
+                onBack = { selectedDay = null }
             )
+
+        } else {
+
+            // =====================================================
+            // 📜 MAIN CONTENT
+            // =====================================================
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(
+                        state = scrollState,
+                        enabled = state.suggestions.isEmpty()
+                    )
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 110.dp) // 🔥 more breathing space
+            ) {
+
+                // 🌤️ Main Weather
+                MainWeatherCard(
+                    state = state,
+                    onAddToFavorites = viewModel::addToFavorites
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                // ⭐ Favorites
+                FavoritesSection(
+                    favorites = state.favorites,
+                    onCityClick = viewModel::onFavoriteClicked,
+                    onRemove = viewModel::removeFromFavorites
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                // 📅 Forecast
+                WeekForecastSection(
+                    weekData = state.weekForecast,
+                    onDayClick = { selectedDay = it }
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+
+            // =====================================================
+            // 🔍 FIXED TOP BAR
+            // =====================================================
+            Box(
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .fillMaxWidth()
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                state.backgroundColors.first(),
+                                state.backgroundColors.first().copy(alpha = 0.95f),
+                                Color.Transparent
+                            )
+                        )
+                    )
+            ) {
+
+                TopBarSection(
+                    state = state,
+                    onQueryChange = viewModel::onSearchQueryChange,
+                    onCitySelected = viewModel::onCitySelected,
+                    onClearFocus = {
+                        viewModel.onSearchQueryChange("")
+                    },
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         }
-
-        //Screen title
-        Text(
-            text = "Home",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        //Flag
-        Image(
-            painter = painterResource(R.drawable.ic_post_background),
-            contentDescription = "Flag",
-            modifier = Modifier
-                .size(36.dp)
-                .clip(RoundedCornerShape(4.dp)),
-            contentScale = ContentScale.Crop
-        )
     }
 }
