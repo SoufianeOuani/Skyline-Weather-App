@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Skyline</string>
+
+    <string name="updating">Mise à jour...</string>
+    <string name="updated_successfully">Mis à jour avec succès</string>
+
+    <string name="humidity">Humidité</string>
+    <string name="wind">Vent</string>
+    <string name="uv_index">Indice UV</string>
+    <string name="rain">Pluie</string>
+    <string name="feels_like">Ressenti</string>
+    <string name="pressure">Pression</string>
+    <string name="temp_range">Min: %1$s • Max: %2$s</string>
+    <string name="week_forecast">Prévisions sur 7 jours</string>
+
+    <string name="search_hint">Rechercher des villes...</string>
+
+
+        <!-- TEMP -->
+        <string name="temp_freezing">Glacial</string>
+        <string name="temp_cold">Froid</string>
+        <string name="temp_cool">Frais</string>
+        <string name="temp_comfortable">Confortable</string>
+        <string name="temp_warm">Chaud</string>
+        <string name="temp_hot">Très chaud</string>
+
+        <!-- WIND -->
+        <string name="wind_calm">Calme</string>
+        <string name="wind_light">Brise légère</string>
+        <string name="wind_windy">Venteux</string>
+        <string name="wind_strong">Vent fort</string>
+        <string name="wind_storm">Tempête</string>
+
+        <!-- RAIN -->
+        <string name="rain_none">Pas de pluie</string>
+        <string name="rain_light">Pluie légère</string>
+        <string name="rain_moderate">Pluie modérée</string>
+        <string name="rain_heavy">Forte pluie</string>
+        <string name="rain_extreme">Pluie extrême</string>
+
+        <!-- SNOW -->
+        <string name="snow_none">Pas de neige</string>
+        <string name="snow_light">Neige légère</string>
+        <string name="snowing">Neige</string>
+        <string name="snow_heavy">Forte neige</string>
+
+        <!-- FORMATS -->
+        <string name="wind_speed_format">%1$s km/h</string>
+        <string name="rain_amount_format">%1$s mm</string>
+        <string name="snow_amount_format">%1$s mm</string>
+
+    <string name="mode_temp">Temp</string>
+    <string name="mode_wind">Vent</string>
+    <string name="mode_rain">Pluie</string>
+    <string name="mode_snow">Neige</string>
+
+    <string name="weather_sunny">Ensoleillé</string>
+    <string name="weather_clear">Dégagé</string>
+    <string name="weather_partly_cloudy">Partiellement nuageux</string>
+    <string name="weather_cloudy">Nuageux</string>
+    <string name="weather_overcast">Couvert</string>
+    <string name="weather_fog">Brouillard</string>
+    <string name="weather_light_rain">Pluie légère</string>
+    <string name="weather_rain">Pluie</string>
+    <string name="weather_storm">Orage</string>
+    <string name="weather_snow">Neige</string>
+    <string name="weather_unknown">Inconnu</string>
+
+</resources>

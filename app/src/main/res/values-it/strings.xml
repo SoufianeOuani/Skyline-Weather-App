@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Skyline</string>
+    <string name="search_hint">Cerca città...</string>
+    <string name="forecast_header">Previsioni a 7 giorni</string>
+    <string name="humidity">Umidità</string>
+    <string name="wind">Vento</string>
+    <string name="uv_index">Indice UV</string>
+    <string name="rain">Pioggia</string>
+    <string name="feels_like">Percepita</string>
+    <string name="pressure">Pressione</string>
+    <string name="full_report">RAPPORTO COMPLETO</string>
+</resources>

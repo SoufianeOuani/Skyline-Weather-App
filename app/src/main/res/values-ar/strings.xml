@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Skyline</string>
+
+    <string name="updating">جارٍ التحديث...</string>
+    <string name="updated_successfully">تم التحديث بنجاح</string>
+
+    <string name="humidity">الرطوبة</string>
+    <string name="wind">الرياح</string>
+    <string name="uv_index">مؤشر الأشعة</string>
+    <string name="rain">المطر</string>
+    <string name="feels_like">الإحساس</string>
+    <string name="pressure">الضغط</string>
+    <string name="temp_range">الصغرى: %1$s • الكبرى: %2$s</string>
+    <string name="week_forecast">توقعات 7 أيام</string>
+
+    <string name="search_hint">ابحث عن مدينة...</string>
+
+
+    <!-- TEMP -->
+    <string name="temp_freezing">متجمد</string>
+    <string name="temp_cold">بارد</string>
+    <string name="temp_cool">معتدل البرودة</string>
+    <string name="temp_comfortable">مريح</string>
+    <string name="temp_warm">دافئ</string>
+    <string name="temp_hot">حار</string>
+
+    <!-- WIND -->
+    <string name="wind_calm">هادئ</string>
+    <string name="wind_light">نسيم خفيف</string>
+    <string name="wind_windy">رياح</string>
+    <string name="wind_strong">رياح قوية</string>
+    <string name="wind_storm">عاصفة</string>
+
+    <!-- RAIN -->
+    <string name="rain_none">لا يوجد مطر</string>
+    <string name="rain_light">مطر خفيف</string>
+    <string name="rain_moderate">مطر متوسط</string>
+    <string name="rain_heavy">مطر غزير</string>
+    <string name="rain_extreme">مطر شديد</string>
+
+    <!-- SNOW -->
+    <string name="snow_none">لا يوجد ثلج</string>
+    <string name="snow_light">ثلج خفيف</string>
+    <string name="snowing">تساقط الثلوج</string>
+    <string name="snow_heavy">ثلوج كثيفة</string>
+
+    <!-- FORMATS -->
+    <string name="wind_speed_format">%1$s كم/س</string>
+    <string name="rain_amount_format">%1$s مم</string>
+    <string name="snow_amount_format">%1$s مم</string>
+
+    <string name="mode_temp">حرارة</string>
+    <string name="mode_wind">رياح</string>
+    <string name="mode_rain">مطر</string>
+    <string name="mode_snow">ثلج</string>
+
+    <string name="weather_sunny">مشمس</string>
+    <string name="weather_clear">صحو</string>
+    <string name="weather_partly_cloudy">غائم جزئياً</string>
+    <string name="weather_cloudy">غائم</string>
+    <string name="weather_overcast">ملبد بالغيوم</string>
+    <string name="weather_fog">ضباب</string>
+    <string name="weather_light_rain">مطر خفيف</string>
+    <string name="weather_rain">مطر</string>
+    <string name="weather_storm">عاصفة</string>
+    <string name="weather_snow">ثلج</string>
+    <string name="weather_unknown">غير معروف</string>
+
+
+</resources>
